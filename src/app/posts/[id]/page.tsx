@@ -1,8 +1,10 @@
 "use client"
+import { useRouter } from 'next/router'
+ 
+
 import React from 'react'
 import CommentSection from '@/components/commentsection';
 import Authorcard from '@/components/Authorcard';
-import {title} from "process";
 import Footer from '@/components/Footer';
 const posts=[
   {
@@ -38,10 +40,12 @@ const posts=[
   description:"Web development refers to the creation, building, and maintenance of websites and web applications that run on internet browsers. It involves a combination of coding, design, and optimization to ensure functionality, usability, and visual appeal. ",
 }
 ];
-export default function Post ({params}:{params:{id:string}}){
-
-  const {id}=params;
+const Post = ( ) => {
+  // const {id}=params;
+  const router = useRouter();
+ const id = router.query.id
   const post=posts.find((p)=>p.Id === id);
+ 
   if (!post){
     return(
       <h2 className='text-2xl font-bold text-center mt-10'>Post Not Found</h2>
@@ -76,5 +80,5 @@ export default function Post ({params}:{params:{id:string}}){
     </div>
   )
 }
-
+export default Post;
 
